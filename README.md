@@ -164,34 +164,6 @@ http://localhost:3000
 http://localhost:3000/api-docs
 ```
 
-### Exemplos de Uso
-
-#### Criar um usuário
-```bash
-curl -X POST http://localhost:3000/users \
-  -H "Content-Type: application/json" \
-  -d '{
-    "email": "usuario@example.com",
-    "name": "Nome do Usuário"
-  }'
-```
-
-#### Buscar posts com dados do autor
-```bash
-curl "http://localhost:3000/posts?include=true"
-```
-
-#### Criar um post
-```bash
-curl -X POST http://localhost:3000/posts \
-  -H "Content-Type: application/json" \
-  -d '{
-    "title": "Meu Post",
-    "content": "Conteúdo do post",
-    "published": true,
-    "authorId": 1
-  }'
-```
 
 ## 🗄️ Estrutura do Banco de Dados
 
@@ -259,15 +231,3 @@ src/
 - As validações impedem a criação de dados inválidos
 - O relacionamento entre tabelas está configurado com cascade delete
 - A documentação Swagger está completamente em português
-
-## 🤝 Contribuição
-
-1. Faça um fork do projeto
-2. Crie uma branch para sua feature (`git checkout -b feature/AmazingFeature`)
-3. Commit suas mudanças (`git commit -m 'Add some AmazingFeature'`)
-4. Push para a branch (`git push origin feature/AmazingFeature`)
-5. Abra um Pull Request
-
-## 📄 Licença
-
-Este projeto está sob a licença ISC. Veja o arquivo `LICENSE` para mais detalhes.
