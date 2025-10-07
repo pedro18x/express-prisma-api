@@ -13,7 +13,7 @@ export class CommentController {
 
       const whereClause: any = {};
       if (postId) {
-        whereClause.postId = postId;
+        whereClause.postId = Number(postId);
       }
 
       const [comments, total] = await Promise.all([
@@ -54,7 +54,7 @@ export class CommentController {
       const { id } = req.params;
 
       const comment = await prisma.comment.findUnique({
-        where: { id },
+        where: { id: Number(id) },
         include: {
           post: true
         }
@@ -125,7 +125,7 @@ export class CommentController {
       const updateData = req.body;
 
       const comment = await prisma.comment.update({
-        where: { id },
+        where: { id: Number(id) },
         data: updateData
       });
 
@@ -156,7 +156,7 @@ export class CommentController {
       const { id } = req.params;
 
       await prisma.comment.delete({
-        where: { id }
+        where: { id: Number(id) }
       });
 
       res.json({

@@ -45,7 +45,7 @@ export class UserController {
       const { id } = req.params;
 
       const user = await prisma.user.findUnique({
-        where: { id },
+        where: { id: Number(id) },
         include: {
           posts: true
         }
@@ -111,7 +111,7 @@ export class UserController {
       const updateData = req.body;
 
       const user = await prisma.user.update({
-        where: { id },
+        where: { id: Number(id) },
         data: updateData
       });
 
@@ -149,7 +149,7 @@ export class UserController {
       const { id } = req.params;
 
       await prisma.user.delete({
-        where: { id }
+        where: { id: Number(id) }
       });
 
       res.json({

@@ -13,10 +13,10 @@ export class PostController {
 
       const whereClause: any = {};
       if (published !== undefined) {
-        whereClause.published = published;
+        whereClause.published = published === 'true' || published === true;
       }
 
-      const includeClause = include ? {
+      const includeClause = (include === 'true' || include === true) ? {
         author: true,
         comments: true
       } : undefined;
@@ -57,13 +57,13 @@ export class PostController {
       const { id } = req.params;
       const { include } = req.query;
 
-      const includeClause = include ? {
+      const includeClause = (include === 'true' || include === true) ? {
         author: true,
         comments: true
       } : undefined;
 
       const post = await prisma.post.findUnique({
-        where: { id },
+        where: { id: Number(id) },
         include: includeClause
       });
 
@@ -148,7 +148,7 @@ export class PostController {
       }
 
       const post = await prisma.post.update({
-        where: { id },
+        where: { id: Number(id) },
         data: updateData
       });
 
@@ -179,7 +179,7 @@ export class PostController {
       const { id } = req.params;
 
       await prisma.post.delete({
-        where: { id }
+        where: { id: Number(id) }
       });
 
       res.json({
